@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Footprint Resources Hub - Trinidad & Tobago</title>
+    <meta name="description" content="Complete resource hub for digital citizenship, cyberbullying prevention, and online safety in Trinidad & Tobago">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .search-bar {
+            background: white;
+            border-radius: 50px;
+            padding: 15px 30px;
+            margin: 30px auto;
+            max-width: 600px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .search-bar span {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .tab {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .tab:hover, .tab.active {
+            background: rgba(255,255,255,0.9);
+            color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .resource-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .resource-card h3 {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .resource-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .resource-type {
+            display: inline-block;
+            background: #f0f0f0;
+            color: #764ba2;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .resource-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .resource-link:hover {
+            gap: 10px;
+            color: #764ba2;
+        }
+
+        .emergency-banner {
+            background: linear-gradient(135deg, #eb3349, #f45c43);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(235, 51, 73, 0.3); }
+            50% { box-shadow: 0 10px 40px rgba(235, 51, 73, 0.6); }
+        }
+
+        .emergency-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .emergency-contacts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .emergency-contact {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .emergency-contact h4 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .emergency-contact p {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .emergency-contact small {
+            display: block;
+            margin-top: 5px;
+            opacity: 0.9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .quick-actions {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .quick-actions h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+            font-weight: 600;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .action-btn span {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+
+        .category-header {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-bottom: 3px solid rgba(255,255,255,0.3);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .emergency-contacts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 Digital Footprint Resource Hub</h1>
+            <p>Your complete guide to digital citizenship and online safety</p>
+            <p style="font-size: 1rem; margin-top: 10px; opacity: 0.8;">Trinidad & Tobago Resources</p>
+        </header>
+
+        <!-- Emergency Banner -->
+        <div class="emergency-banner">
+            <h2>🚨 Need Help Now?</h2>
+            <p>If you're experiencing cyberbullying or a crisis, reach out immediately:</p>
+            <div class="emergency-contacts">
+                <div class="emergency-contact">
+                    <h4>ChildLine T&T</h4>
+                    <p>131 or 800-4321</p>
+                    <small>FREE 24/7 Helpline</small>
+                </div>
+                <div class="emergency-contact">
+                    <h4>ChildLine WhatsApp</h4>
+                    <p>+1 (868) 760-4471</p>
+                    <small>24/7 Support</small>
+                </div>
+                <div class="emergency-contact">
+                    <h4>Children's Authority</h4>
+                    <p>996 or 800-2014</p>
+                    <small>Child Protection</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" id="searchInput" placeholder="Search resources..." onkeyup="searchResources()">
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <h2>⚡ Quick Actions</h2>
+            <div class="actions-grid">
+                <a href="#emergency" class="action-btn" onclick="scrollToSection('emergency')">
+                    <span>📢</span>
+                    Emergency Help
+                </a>
+                <a href="#support" class="action-btn" onclick="scrollToSection('support')">
+                    <span>💚</span>
+                    Get Support
+                </a>
+                <a href="#privacy" class="action-btn" onclick="scrollToSection('privacy')">
+                    <span>🔒</span>
+                    Privacy Settings
+                </a>
+                <a href="#education" class="action-btn" onclick="scrollToSection('education')">
+                    <span>📚</span>
+                    Learn More
+                </a>
+            </div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+            <button class="tab active" onclick="filterCategory('all')">All Resources</button>
+            <button class="tab" onclick="filterCategory('emergency')">🚨 Emergency</button>
+            <button class="tab" onclick="filterCategory('support')">💚 Support</button>
+            <button class="tab" onclick="filterCategory('education')">📚 Education</button>
+            <button class="tab" onclick="filterCategory('privacy')">🔒 Privacy</button>
+            <button class="tab" onclick="filterCategory('reporting')">📢 Reporting</button>
+            <button class="tab" onclick="filterCategory('tools')">🛠️ Tools</button>
+        </div>
+
+        <!-- Resources Grid -->
+        <div id="resourcesContainer"></div>
+
+        <footer>
+            <p>💙 Remember: You're not alone. Help is always available.</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                Bookmark this page for quick access to all resources
+            </p>
+            <p style="margin-top: 20px; font-size: 0.85rem; opacity: 0.7;">
+                Digital Footprint Workshop | Trinidad & Tobago
+            </p>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast">
+        <strong>✅ Link opened!</strong>
+    </div>
+
+    <script>
+        const resources = [
+            // Emergency Resources - Trinidad and Tobago
+            {
+                category: 'emergency',
+                icon: '📞',
+                title: 'ChildLine Trinidad & Tobago',
+                description: 'FREE 24/7 helpline for children and youth up to age 25. Phone, web chat, and WhatsApp support available.',
+                type: 'Crisis Helpline',
+                link: 'https://childlinett.org/',
+                action: 'Call 131 or 800-4321 (FREE)'
+            },
+            {
+                category: 'emergency',
+                icon: '💬',
+                title: 'ChildLine WhatsApp Support',
+                description: '24/7 confidential support via WhatsApp for children, teens, and young adults.',
+                type: 'WhatsApp',
+                link: 'https://wa.me/18687604471',
+                action: 'WhatsApp: +1 (868) 760-4471'
+            },
+            {
+                category: 'emergency',
+                icon: '🏥',
+                title: 'Ministry of Health Mental Health Unit',
+                description: 'Mental health support and crisis intervention services in Trinidad and Tobago.',
+                type: 'Government',
+                link: 'https://health.gov.tt/services/mental-health',
+                action: 'Call 217-4664 Ext. 12502-12510'
+            },
+            {
+                category: 'emergency',
+                icon: '👶',
+                title: "Children's Authority Hotline",
+                description: 'Report child abuse, neglect, or any concerns about child safety.',
+                type: 'Child Protection',
+                link: 'https://ttchildren.org/',
+                action: 'Call 996 or 800-2014'
+            },
+            {
+                category: 'emergency',
+                icon: '🚨',
+                title: 'Trinidad & Tobago Police Service',
+                description: 'Emergency police services for immediate threats or criminal activity.',
+                type: 'Emergency',
+                link: 'https://ttps.gov.tt/',
+                action: 'Call 999 (Emergency) or 555 (Non-Emergency)'
+            },
+            {
+                category: 'emergency',
+                icon: '💜',
+                title: 'Rape Crisis Society of T&T',
+                description: '24/7 free, compassionate and confidential support for sexual assault survivors.',
+                type: 'Crisis Support',
+                link: 'https://findahelpline.com/countries/tt',
+                action: 'Contact for Support'
+            },
+
+            // Support Resources - Trinidad and Tobago
+            {
+                category: 'support',
+                icon: '🧠',
+                title: 'FindCareTT - MHPSS Services Directory',
+                description: 'Comprehensive directory of Mental Health and Psychosocial Support services in Trinidad and Tobago.',
+                type: 'Directory',
+                link: 'https://findcarett.com/',
+                action: 'Find Services'
+            },
+            {
+                category: 'support',
+                icon: '💬',
+                title: 'UWI Mental Health Chatline',
+                description: 'Text-based mental health support and referrals for adolescents, launched by Ministry of Health, UNICEF, and UWI.',
+                type: 'Chatline',
+                link: 'https://youngcaribbeanminds.com',
+                action: 'Get Support'
+            },
+            {
+                category: 'support',
+                icon: '🏥',
+                title: 'The Centre for Human Development',
+                description: 'Full-service psychological and counselling practice for children, adolescents, adults, and families in Trinidad & Tobago.',
+                type: 'Counselling',
+                link: 'https://tchdltd.com/',
+                action: 'Book Appointment'
+            },
+            {
+                category: 'support',
+                icon: '🎓',
+                title: 'Trinidad & Tobago Association of Psychologists',
+                description: 'Directory of registered psychologists and mental health professionals. Ensures you work with qualified therapists.',
+                type: 'Professional',
+                link: 'https://psychologytt.org/',
+                action: 'Find a Psychologist'
+            },
+            {
+                category: 'support',
+                icon: '💙',
+                title: 'Lifelong Living Counselling Services',
+                description: 'Specialized teen therapy and counselling for adolescents dealing with anxiety, depression, stress, and other issues.',
+                type: 'Teen Therapy',
+                link: 'https://www.lifelonglivingcounsellingservices.com/',
+                action: 'Learn More'
+            },
+            {
+                category: 'support',
+                icon: '👨‍👩‍👧',
+                title: 'Family Support Services',
+                description: 'Access family therapy and support through local counselling centers that integrate family dynamics with teen wellness.',
+                type: 'Family',
+                link: 'https://findcarett.com/',
+                action: 'Find Services'
+            },
+
+            // Education Resources
+            {
+                category: 'education',
+                icon: '🎓',
+                title: 'Common Sense Media',
+                description: 'Age-based reviews and advice about media and technology for families.',
+                type: 'Educational',
+                link: 'https://www.commonsensemedia.org/',
+                action: 'Explore Resources'
+            },
+            {
+                category: 'education',
+                icon: '📖',
+                title: 'Cyberbullying Research Center',
+                description: 'Research-based information about cyberbullying and its prevention.',
+                type: 'Research',
+                link: 'https://cyberbullying.org/',
+                action: 'Learn More'
+            },
+            {
+                category: 'education',
+                icon: '🎯',
+                title: 'StopBullying.gov',
+                description: 'Federal resource on bullying prevention, response, and recovery.',
+                type: 'Government',
+                link: 'https://www.stopbullying.gov/',
+                action: 'Visit Site'
+            },
+            {
+                category: 'education',
+                icon: '🌐',
+                title: 'NetSmartz',
+                description: 'Interactive program teaching children and teens online safety.',
+                type: 'Interactive',
+                link: 'https://www.netsmartz.org/',
+                action: 'Start Learning'
+            },
+            {
+                category: 'education',
+                icon: '🔍',
+                title: 'Digital Citizenship Curriculum',
+                description: 'Comprehensive lessons on responsible technology use.',
+                type: 'Curriculum',
+                link: 'https://www.digitalcitizenship.net/',
+                action: 'Access Lessons'
+            },
+
+            // Privacy & Security
+            {
+                category: 'privacy',
+                icon: '🔐',
+                title: 'Privacy Settings Guides',
+                description: 'Step-by-step guides for all major social media platforms.',
+                type: 'Guide',
+                link: 'https://www.connectsafely.org/privacy/',
+                action: 'View Guides'
+            },
+            {
+                category: 'privacy',
+                icon: '🛡️',
+                title: 'Two-Factor Authentication Guide',
+                description: 'Learn how to enable 2FA on all your accounts for better security.',
+                type: 'Tutorial',
+                link: 'https://www.consumer.ftc.gov/articles/how-use-two-factor-authentication',
+                action: 'Set Up 2FA'
+            },
+            {
+                category: 'privacy',
+                icon: '👁️',
+                title: 'Check Your Digital Footprint',
+                description: 'Tools to see what information about you is publicly available online.',
+                type: 'Tool',
+                link: 'https://www.google.com/alerts',
+                action: 'Set Up Alerts'
+            },
+            {
+                category: 'privacy',
+                icon: '🔒',
+                title: 'Password Manager Guide',
+                description: 'Learn to use password managers to keep your accounts secure.',
+                type: 'Security',
+                link: 'https://www.cisa.gov/secure-our-world/use-strong-passwords',
+                action: 'Get Started'
+            },
+
+            // Reporting Resources
+            {
+                category: 'reporting',
+                icon: '📱',
+                title: 'Report to Instagram',
+                description: 'How to report bullying, harassment, and inappropriate content.',
+                type: 'Platform',
+                link: 'https://help.instagram.com/165828726894770',
+                action: 'Report Now'
+            },
+            {
+                category: 'reporting',
+                icon: '🐦',
+                title: 'Report to Twitter/X',
+                description: 'Report abusive behavior and harassment on Twitter.',
+                type: 'Platform',
+                link: 'https://help.twitter.com/en/safety-and-security/report-abusive-behavior',
+                action: 'Report Now'
+            },
+            {
+                category: 'reporting',
+                icon: '👻',
+                title: 'Report to Snapchat',
+                description: 'Safety Center and reporting tools for Snapchat.',
+                type: 'Platform',
+                link: 'https://support.snapchat.com/en-US/i-need-help',
+                action: 'Report Now'
+            },
+            {
+                category: 'reporting',
+                icon: '🎵',
+                title: 'Report to TikTok',
+                description: 'Report content and users that violate community guidelines.',
+                type: 'Platform',
+                link: 'https://support.tiktok.com/en/safety-hc/report-a-problem',
+                action: 'Report Now'
+            },
+            {
+                category: 'reporting',
+                icon: '📘',
+                title: 'Report to Facebook',
+                description: 'Bullying Prevention Hub and reporting center.',
+                type: 'Platform',
+                link: 'https://www.facebook.com/safety/bullying',
+                action: 'Report Now'
+            },
+
+            // Tools
+            {
+                category: 'tools',
+                icon: '📸',
+                title: 'Screenshot Documentation Guide',
+                description: 'Learn how to properly document cyberbullying incidents.',
+                type: 'Guide',
+                link: 'https://www.stopbullying.gov/cyberbullying/how-to-report',
+                action: 'Learn How'
+            },
+            {
+                category: 'tools',
+                icon: '🚫',
+                title: 'Content Filtering Tools',
+                description: 'Apps and tools to filter inappropriate content.',
+                type: 'Software',
+                link: 'https://www.commonsensemedia.org/articles/parents-ultimate-guide-to-parental-controls',
+                action: 'Browse Tools'
+            },
+            {
+                category: 'tools',
+                icon: '⏰',
+                title: 'Screen Time Management',
+                description: 'Tools to help manage and monitor digital device usage.',
+                type: 'App',
+                link: 'https://www.commonsensemedia.org/articles/how-to-make-a-family-media-agreement',
+                action: 'Get Started'
+            },
+            {
+                category: 'tools',
+                icon: '🗑️',
+                title: 'Delete Old Posts Tools',
+                description: 'Services to help clean up your social media history.',
+                type: 'Service',
+                link: 'https://www.deseat.me/',
+                action: 'Clean Up'
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function renderResources() {
+            const container = document.getElementById('resourcesContainer');
+            const filteredResources = currentFilter === 'all' 
+                ? resources 
+                : resources.filter(r => r.category === currentFilter);
+
+            // Group by category
+            const grouped = {};
+            filteredResources.forEach(resource => {
+                if (!grouped[resource.category]) {
+                    grouped[resource.category] = [];
+                }
+                grouped[resource.category].push(resource);
+            });
+
+            let html = '';
+            const categoryNames = {
+                'emergency': '🚨 Emergency Resources - Trinidad & Tobago',
+                'support': '💚 Support & Counseling - Trinidad & Tobago',
+                'education': '📚 Educational Resources',
+                'privacy': '🔒 Privacy & Security',
+                'reporting': '📢 Reporting Tools',
+                'tools': '🛠️ Helpful Tools'
+            };
+
+            Object.keys(grouped).forEach(category => {
+                html += `
+                    <div class="category-section" id="${category}">
+                        <h2 class="category-header">${categoryNames[category]}</h2>
+                        <div class="resources-grid">
+                `;
+
+                grouped[category].forEach(resource => {
+                    html += `
+                        <div class="resource-card" onclick="openResource('${resource.link}', '${resource.title}')">
+                            <div class="resource-icon">${resource.icon}</div>
+                            <h3>${resource.title}</h3>
+                            <p>${resource.description}</p>
+                            <span class="resource-type">${resource.type}</span>
+                            <a href="${resource.link}" target="_blank" class="resource-link" onclick="event.stopPropagation()">
+                                ${resource.action} →
+                            </a>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function filterCategory(category) {
+            currentFilter = category;
+            
+            // Update active tab
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            renderResources();
+        }
+
+        function searchResources() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.resource-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openResource(link, title) {
+            window.open(link, '_blank');
+            showToast(`Opening: ${title}`);
+        }
+
+        function scrollToSection(section) {
+            const element = document.getElementById(section);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.querySelector('strong').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Initialize
+        renderResources();
+    </script>
+</body>
+</html>
